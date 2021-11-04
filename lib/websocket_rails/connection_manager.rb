@@ -63,7 +63,7 @@ module WebsocketRails
       request = ActionDispatch::Request.new(env)
 
       response = open_connection(request)
-
+      debug response
       response
     rescue InvalidConnectionError => ex
       error "Invalid connection attempt: #{ex.message}"
@@ -85,6 +85,7 @@ module WebsocketRails
       connections[connection.id.to_s] = connection
 
       info "Connection opened: #{connection}"
+      debug connection.inspect
       connection.rack_response
     end
 

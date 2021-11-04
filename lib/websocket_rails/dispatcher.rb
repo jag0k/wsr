@@ -25,10 +25,13 @@ module WebsocketRails
     end
 
     def dispatch(message)
+      info "dispatch"
+      debug message.inspect
       @message_queue << message
     end
 
     def process_inbound
+      info "processing inbound"
       @message_queue.pop do |message|
         processor_registry.processors_for(message).each do |processor|
           processor.process_message(message)

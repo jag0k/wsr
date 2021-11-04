@@ -26,7 +26,6 @@ module WebsocketRails
 
     def dispatch(message)
       info "dispatch"
-      debug message.inspect
       @message_queue << message
     end
 
